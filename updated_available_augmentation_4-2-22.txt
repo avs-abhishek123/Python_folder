@@ -1,0 +1,261 @@
+{
+    "transformations":
+        [
+            { 
+                "name" : "Blur",
+                "info" : "Blurs the input image using a given sized kernel",
+                "id" : 1,   
+                "parameters" : [
+                              {
+                                "name":"kernel_size",
+                                "info":"kernel_size : kernel size for blurring the input image. minimum kernel sie is 3, max is inf [But for real time, it is a of image size].",
+                                "data_type" : "int", 
+                                "default" : 7
+                              }
+                            ]
+            },
+            { 
+                "name" : "GaussianBlur",
+                "info" : "Blurs the input image using a Gaussian filter with a given kernel size.",
+                "id" : 2,   
+                "parameters" : [
+                              {
+                                "name":"kernel_size",
+                                "info":"kernel_size : Gaussian kernel size for blurring the input image. Must be zero or odd and in range [0, inf). If set to 0 it will be computed from sigma as `round(sigma * (3 if img.dtype == np.uint8 else 4) * 2 + 1) + 1`. ",
+                                "data_type" : "int", 
+                                "default" : 7
+                              }
+                            ]
+            },
+            { 
+                "name" : "ChannelDropout",
+                "info" : "Randomly Drop Channels in the input Image",
+                "id" : 3,   
+                "parameters" : [
+                              {
+                                "name":"number_of_channel_drop",
+                                "info":"number_of_channel_drop : number of channels to drop.",
+                                "data_type" : "int", 
+                                "default" : 1
+                              },
+                              {
+                                "name":"fill_value",
+                                "info":"fill_value : pixel value for the dropped channel. defaul =0",
+                                "data_type" : "int", 
+                                "default" : 0
+                              }                              
+                            ]
+            },
+            { 
+                "name" : "GridDistortion",
+                "info" : "Applying the grid distortion",
+                "id" : 4,   
+                "parameters" : [
+                              {
+                                "name":"distort_limit",
+                                "info":"Limit of distortion is applied ",
+                                "data_type" : "float", 
+                                "default" : 0.3
+                              }
+                            ]
+            },
+            { 
+                "name" : "HueSaturationValue",
+                "info" : "Change hue, saturation and value of the input image.",
+                "id" : 5,   
+                "parameters" : [
+                              {
+                                "name":"hue_shift",
+                                "info":"hue_shift : variable for changing Hue.",
+                                "data_type" : "int", 
+                                "default" : 20
+                              },
+                              {
+                                "name":"sat_shift",
+                                "info":"sat_shift : variable for changing Saturation.",
+                                "data_type" : "int", 
+                                "default" : 30
+                              },
+                              {
+                                "name":"val_shift",
+                                "info":"val_shift : variable for changing value.",
+                                "data_type" : "int", 
+                                "default" : 20
+                              }                              
+                            ]
+            },
+            { 
+                "name" : "Sharpen",
+                "info" : "Sharpen the input image and overlays the result with the original image.",
+                "id" : 6,   
+                "parameters" : [
+                              {
+                                "name":"alpha",
+                                "info":"alpha value to choose the visibility of the sharpened image. At 0, only the original image is visible, at 1.0 only its sharpened version is visible.",
+                                "data_type" : "float", 
+                                "default" : 0.3
+                              },
+                              {
+                                "name":"lightness",
+                                "info":"lightness value to choose the lightness of the sharpened image.",
+                                "data_type" : "float", 
+                                "default" : 0.8
+                              }                              
+                            ]
+            },
+            { 
+                "name" : "Brightness",
+                "info" : "change brightness of the input image.",
+                "id" : 7,   
+                "parameters" : [
+                              {
+                                "name":"limit",
+                                "info":"factor value for changing brightness.",
+                                "data_type" : "float", 
+                                "default" : 1.0
+                              }
+                            ]
+            },
+            { 
+                "name" : "Contrast",
+                "info" : "change Contrast of the input image.",
+                "id" : 8,   
+                "parameters" : [
+                              {
+                                "name":"limit",
+                                "info":"limit ((float, float) or float): factor value for changing Contrast.",
+                                "data_type" : "float", 
+                                "default" : 1.0
+                              }
+                            ]
+            },
+            { 
+                "name" : "Crop",
+                "info" : "Crop region from image.",
+                "id" : 9,   
+                "parameters" : [
+                              {
+                                "name":"x_min",
+                                "info":"x_min (int): Minimum upper left x coordinate in pixels.",
+                                "data_type" : "int", 
+                                "default" : 0
+                              },
+                              {
+                                "name":"y_min",
+                                "info":"y_min (int): Minimum upper left y coordinate in pixels..",
+                                "data_type" : "int", 
+                                "default" : 0
+                              },                              {
+                                "name":"x_max",
+                                "info":"x_max (int): Maximum lower right x coordinate in pixels..",
+                                "data_type" : "int", 
+                                "default" : 1024
+                              },                              {
+                                "name":"y_max",
+                                "info":"y_max (int): Maximum lower right y coordinate in pixels..",
+                                "data_type" : "int", 
+                                "default" : 1024
+                              }
+                            ]
+            },
+            { 
+                "name" : "Rotate",
+                "info" : "Rotate the input by an angle",
+                "id" : 10,   
+                "parameters" : [
+                              {
+                                "name":"angle",
+                                "info":"angle (float): range from which a random angle is picked.",
+                                "data_type" : "float", 
+                                "default" : 45.0
+                              }
+                            ]
+            },
+            {
+                "name" : "Scale",
+                "info" : "Resize the input. Output image size is different from the input image size.",
+                "id" : 11,   
+                "parameters" : [
+                              {
+                                "name":"scale_limit",
+                                "info":"scale_limit : scaling factor. Can also be a negative value",
+                                "data_type" : "float", 
+                                "default" : 0.4
+                              }
+                            ]
+            },
+            {
+              "name" : "ZoomIn",
+              "info" : "Zooms into the input. Output image size is same as the input image size.",
+              "id" : 12,   
+              "parameters" : [
+                            {
+                              "name":"scale_limit",
+                              "info":"scale_limit : scaling factor. Can also be a negative value",
+                              "data_type" : "float", 
+                              "default" : 0.4
+                            }
+                          ]
+          },            
+            { 
+                "name" : "VerticalFlip",
+                "info" : "Flip the input vertically around the x-axis",
+                "id" : 13,   
+                "parameters" : "None"
+            },
+            { 
+                "name" : "HorizontalFlip",
+                "info" : "Flip the input horizontally around the x-axis",
+                "id" : 14,   
+                "parameters" : "None"
+            },            
+            { 
+                "name" : "GlassBlur",
+                "info" : "Apply glass noise to the input image.",
+                "id" : 15,   
+                "parameters" : "None"
+            },
+            { 
+                "name" : "GaussNoise",
+                "info" : "Apply Gauss noise to the input image.",
+                "id" : 16,   
+                "parameters" : "None"
+            },
+            { 
+                "name" : "Transpose",
+                "info" : "Apply Transpose to the input image.",
+                "id" : 17,   
+                "parameters" : "None"
+            },                      
+            { 
+                "name" : "ChannelShuffle",
+                "info" : "rearrange channels of the input RGB image.",
+                "id" : 18,   
+                "parameters" : "None"
+            },
+            { 
+                "name" : "ToSepia",
+                "info" : "Applies sepia filter to the input RGB image.",
+                "id" : 19,   
+                "parameters" : "None"
+            },
+            { 
+                "name" : "ToGray",
+                "info" : "Convert the input RGB image to grayscale. If the mean pixel value for the resulting image is greater than 127, invert the resulting grayscale image.",
+                "id" : 20,   
+                "parameters" : "None"
+            },
+            { 
+                "name" : "CLAHE",
+                "info" : "Apply Contrast Limited Adaptive Histogram Equalization to the input image.",
+                "id" : 21,   
+                "parameters" : "None"
+            },
+            { 
+              "name" : "Posterize",
+              "info" : "Reduce the number of bits for each color channel.",
+              "id" : 22,   
+              "parameters" : "None"
+            }
+        ]
+}
